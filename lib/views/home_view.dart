@@ -11,6 +11,7 @@ import 'package:stacked/stacked.dart';
 class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    print("HomeView built");
     return ViewModelBuilder<HomeViewModel>.reactive(
       builder: (context, viewmodel, child) => Scaffold(
         appBar: appBar(context, viewmodel.currentIndex),
@@ -51,7 +52,6 @@ class HomeView extends StatelessWidget {
     return new AppBar(
       title: Text(titleOptions.elementAt(currentIndex)),
       titleSpacing: 25,
-      flexibleSpace: new Image.asset("assets/background/app_bar_background_3.png", fit: BoxFit.fill,),
       backgroundColor: Color(0xFFDFAE20),
       actions: actionsOptions.elementAt(currentIndex),
     );

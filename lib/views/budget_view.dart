@@ -8,8 +8,10 @@ class BudgetView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("BudgetView built");
     return ViewModelBuilder<BudgetsViewModel>.reactive(
       disposeViewModel: false,
+      initialiseSpecialViewModelsOnce: true,
       builder: (context, model, child) => Container(),
       viewModelBuilder: () => locator<BudgetsViewModel>(),
     );

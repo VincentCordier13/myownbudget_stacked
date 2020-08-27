@@ -8,8 +8,10 @@ class AccountView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("AccountView built");
     return ViewModelBuilder<AccountsViewModel>.reactive(
       disposeViewModel: false,
+      initialiseSpecialViewModelsOnce: true,
       builder: (context, model, child) => Container(),
       viewModelBuilder: () => locator<AccountsViewModel>(),
     );
