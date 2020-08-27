@@ -24,6 +24,18 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # state management
+  stacked: ^1.7.6
+  stacked_hooks: 0.1.1+3
+  # navigation
+  auto_route:
+  stacked_services:
+  # inversion of control
+  get_it: ^4.0.4
+  injectable:
+  flutter_hooks:
+  observable_ish:
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
