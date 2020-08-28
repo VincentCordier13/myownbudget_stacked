@@ -3,7 +3,7 @@ import 'package:stacked/stacked.dart';
 
 class BudgetsViewModel extends FutureViewModel<List<Budget>> {
   Future<List<Budget>> getDatas() async {
-    
+    print("getDatas operation");
   }
 
   @override

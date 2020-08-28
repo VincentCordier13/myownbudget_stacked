@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:myownbudget_stacked/ViewModels/home_viewmodel.dart';
-import 'package:myownbudget_stacked/views/account_view.dart';
-import 'package:myownbudget_stacked/views/budget_view.dart';
+import 'package:myownbudget_stacked/views/accounts_view.dart';
+import 'package:myownbudget_stacked/views/budgets_view.dart';
 import 'package:myownbudget_stacked/views/form/account_form_view.dart';
 import 'package:myownbudget_stacked/views/form/budget_form_view.dart';
 import 'package:myownbudget_stacked/views/form/operation_form_view.dart';
-import 'package:myownbudget_stacked/views/operation_view.dart';
+import 'package:myownbudget_stacked/views/operations_view.dart';
 import 'package:stacked/stacked.dart';
 
 class HomeView extends StatelessWidget {
@@ -69,7 +69,7 @@ class HomeView extends StatelessWidget {
     );
   }
 
-  Widget bottomNavigationBar(IndexTrackingViewModel viewmodel, int currentIndex) {
+  Widget bottomNavigationBar(HomeViewModel viewmodel, int currentIndex) {
     return new BottomNavigationBar(
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
