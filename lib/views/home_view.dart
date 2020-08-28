@@ -86,7 +86,6 @@ class HomeView extends StatelessWidget {
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
-              print("View : onPressed floatingButton");
               Navigator.push(
                   context,
                   MaterialPageRoute(

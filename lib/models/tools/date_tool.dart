@@ -21,14 +21,15 @@ class DateClass {
   }
 
   DateClass.fromData({@required String data}) {
-    List<String> datas = data.split(".");
+    print("DateClass.fromData");
+    List<String> datas = data.split("@");
     this.day = int.parse(datas[0]);
     this.month = int.parse(datas[1]);
     this.year = int.parse(datas[2]);
   }
 
   String toData() {
-    return this.day.toString() + "." + this.month.toString() + "." + this.year.toString();
+    return this.day.toString() + "@" + this.month.toString() + "@" + this.year.toString();
   }
 
   String toString({PeriodEnum period = PeriodEnum.dayly}) {

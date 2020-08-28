@@ -9,4 +9,7 @@ class AccountsViewModel extends FutureViewModel<List<Account>> {
 
   @override
   Future<List<Account>> futureToRun() => _service.loadAccounts();
+
+  @override
+  List<ReactiveServiceMixin> get reactiveServices => [_service];
 }

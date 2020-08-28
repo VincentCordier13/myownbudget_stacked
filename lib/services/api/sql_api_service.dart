@@ -5,7 +5,7 @@ import 'package:sqflite/sqflite.dart';
 class SqlApiService {
 
   Future<Database> initDatabase(String name, String table, String sqlCreateRows) async {
-    print("api initDatabase");
+    print("api : initDatabase");
     return await openDatabase(
       join(await getDatabasesPath(), name),
       onCreate: (db, version) async {
@@ -19,6 +19,9 @@ class SqlApiService {
   Future<List<Map<String, dynamic>>> load(Future<Database> database, String table, List<String> columns) async {
     print("api : load");
     final Database db = await database;
+    print(Sqflite.firstIntValue(await db.rawQuery('SELECT COUNT(*) FROM table_name')));
+    if (Sqflite.firstIntValue(await db.rawQuery('SELECT COUNT(*) FROM table_name')) == 0)
+      return null;
     return await db.query(table, columns: columns);
   }
 

@@ -10,13 +10,14 @@ class MoneyClass {
   }
 
   MoneyClass.fromData({@required String data}) {
-    List<String> datas = data.split(".");
+    print("MoneyClass.fromData");
+    List<String> datas = data.split("@");
     this.amount = double.parse(datas[0]);
     this.currency = this.currency.fromStringData(datas[1]);
   }
 
   String toData() {
-    return this.amount.toString() + "." + this.currency.toStringData();
+    return this.amount.toString() + "@" + this.currency.toStringData();
   }
 
   String toString() {

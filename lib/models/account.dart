@@ -20,11 +20,12 @@ class Account {
   }
 
   Account.fromData(Map<String, dynamic> data) {
+    print("Account.fromData");
     this.id = data[AccountDataModel._ID];
     this.name = data[AccountDataModel._NAME];
-    this.icon = data[AccountDataModel._ICON];
-    this.money = data[AccountDataModel._MONEY];
-    this.dateofLastOperation = data[AccountDataModel._DATE];
+    this.icon = new IconClass.fromData(data: data[AccountDataModel._ICON]);
+    this.money = new MoneyClass.fromData(data: data[AccountDataModel._MONEY]);
+    this.dateofLastOperation = new DateClass.fromData(data: data[AccountDataModel._DATE]);
     this.description = data[AccountDataModel._DESCRIPTION];
   }
 
@@ -32,9 +33,9 @@ class Account {
     return <String, dynamic> {
       //AccountDataModel._ID: this.id, //auto-increment
       AccountDataModel._NAME: this.name,
-      AccountDataModel._ICON: this.icon,
-      AccountDataModel._MONEY: this.money,
-      AccountDataModel._DATE: this.dateofLastOperation,
+      AccountDataModel._ICON: this.icon.toData(),
+      AccountDataModel._MONEY: this.money.toData(),
+      AccountDataModel._DATE: this.dateofLastOperation.toData(),
       AccountDataModel._DESCRIPTION: this.description,
     };
   }

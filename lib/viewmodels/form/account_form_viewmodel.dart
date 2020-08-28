@@ -19,6 +19,8 @@ class AccountFormViewModel extends BaseViewModel {
   set description(String description) => _account.description = description;
 
   Future<int> createAccount() async {
-    return await _service.insertAccount(_account);
+    int response = await _service.insertAccount(_account);
+    notifyListeners();
+    return response;
   }
 }

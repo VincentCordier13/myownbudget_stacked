@@ -12,6 +12,7 @@ class IconClass {
   }
 
   IconClass.fromData({@required String data}) {
+    print("IconClass.fromData");
     List<String> datas = data.split("@");
     this.image = "assets/icons/" + datas[0] + ".png";
     this.imageColor = this.imageColor.fromData(datas[1]);

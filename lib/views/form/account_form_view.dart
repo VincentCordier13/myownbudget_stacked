@@ -10,6 +10,7 @@ class AccountFormView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("AccountFormView built");
     return ViewModelBuilder<AccountFormViewModel>.reactive(
       builder: (context, viewmodel, child) => Opacity(
         opacity: 0.5,
