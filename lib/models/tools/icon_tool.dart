@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 
 class IconClass {
   String image;
@@ -6,40 +7,40 @@ class IconClass {
   BackColorEnum backColor;
 
   IconClass() {
-    this.image = "assets/icons/cadie.png";
-    this.imageColor = ImageColorEnum.values[1];
-    this.backColor = BackColorEnum.values[2];
+    this.image = "assets/icons/flutter.png";
+    this.imageColor = ImageColorEnum.values[0]; //white
+    this.backColor = BackColorEnum.values[1]; //black
   }
 
   IconClass.fromData({@required String data}) {
     print("IconClass.fromData");
     List<String> datas = data.split("@");
     this.image = "assets/icons/" + datas[0] + ".png";
-    this.imageColor = this.imageColor.fromData(datas[1]);
-    this.backColor = this.backColor.fromData(datas[2]);
+    this.imageColor.fromData = datas[1];
+    this.backColor.fromData = datas[2];
   }
 
   String toData() {
-    return this.image + "@" + this.imageColor.toStringValue() + "@" + this.backColor.toStringValue();
+    return this.image + "@" + this.imageColor.toData + "@" + this.backColor.toData;
   }
 
   getBackColor() {
-    return this.backColor.toColorValue();
+    return this.backColor.toColorValue;
   }
 
   getImageColor() {
-    return this.imageColor.toColorValue();
+    return this.imageColor.toColorValue;
   }
 }
-  
+
 enum ImageColorEnum {
   white,
   black,
 }
 
-extension on ImageColorEnum {
+extension ImageColorEnumExtension on ImageColorEnum {
 
-  Color toColorValue() {
+  Color get toColorValue {
     switch (this) {
       case ImageColorEnum.white :
         return Color(0xFFFFFFFF);
@@ -50,12 +51,19 @@ extension on ImageColorEnum {
     }
   }
 
-  String toStringValue() {
-    return this.toString().substring(this.toString().indexOf('.') + 1);
-  }
+  String get toData => describeEnum(this);
 
-  ImageColorEnum fromData(String string) {
-    return ImageColorEnum.values.firstWhere((e) => e.toString() == string);
+  set fromData(String data) {
+    ImageColorEnum response = ImageColorEnum.values.firstWhere((e) {
+      print("");
+      print("e $e");
+      print("data $data");
+      print("describeEnum(e) ${describeEnum(e)}");
+      print(describeEnum(e) == data ? true : false);
+      print("");
+      return describeEnum(e) == data ? true : false ;
+    });
+    print("response $response");
   }
 }
 
@@ -74,7 +82,7 @@ enum BackColorEnum {
 
 extension on BackColorEnum {
 
-  Color toColorValue() {
+  Color get toColorValue {
     switch (this) {
       case BackColorEnum.white :
         return Color(0xFFFFFFFF);
@@ -93,11 +101,7 @@ extension on BackColorEnum {
     }
   }
 
-  String toStringValue() {
-    return this.toString().substring(this.toString().indexOf('.') + 1);
-  }
+  String get toData => describeEnum(this);
 
-  BackColorEnum fromData(String string) {
-    return BackColorEnum.values.firstWhere((e) => e.toString() == string);
-  }
+  set fromData(String data) => BackColorEnum.values.firstWhere((e) => describeEnum(e) == data);
 }
