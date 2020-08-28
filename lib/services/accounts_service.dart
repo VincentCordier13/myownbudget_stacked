@@ -8,7 +8,7 @@ class AccountsService {
 
   static Database _database;
   Future<Database> get database async {
-    print("Data : getter account database");
+    print("getter account database");
     if (_database == null) {
       _database = await _api.initDatabase(AccountDataModel.filename, AccountDataModel.table, AccountDataModel.sqlCreateTable());
     }
@@ -21,6 +21,7 @@ class AccountsService {
 
 
   Future<List<Account>> loadAccounts() async {
+    print("loadAccounts");
     _accounts = new List<Account>();
     final datas = await _api.load(database, AccountDataModel.table, AccountDataModel.columns());
     datas.forEach((data) { 
@@ -30,11 +31,13 @@ class AccountsService {
   }
 
   Future<int> insertAccount(Account account) async {
+    print("insertAccount");
     final data = account.toData();
     return await _api.insert(database, AccountDataModel.table, data);
   }
 
   Future<int> updateAccount(Account account) async {
+    print("updateAccount");
     final data = account.toData();
     return await _api.update(database, AccountDataModel.table, data);
   }

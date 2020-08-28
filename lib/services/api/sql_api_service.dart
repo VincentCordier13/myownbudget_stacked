@@ -5,11 +5,11 @@ import 'package:sqflite/sqflite.dart';
 class SqlApiService {
 
   Future<Database> initDatabase(String name, String table, String sqlCreateRows) async {
-    print("Data : initDatabase account");
+    print("api initDatabase");
     return await openDatabase(
       join(await getDatabasesPath(), name),
       onCreate: (db, version) async {
-        print("Data : create account database");
+        print("api : create database");
         await db.execute(sqlCreateRows);
       },
       version: 1,
@@ -17,19 +17,19 @@ class SqlApiService {
   }
 
   Future<List<Map<String, dynamic>>> load(Future<Database> database, String table, List<String> columns) async {
-    print("Data : load account");
+    print("api : load");
     final Database db = await database;
     return await db.query(table, columns: columns);
   }
 
   Future<int> insert(Future<Database> database, String table, Map<String, dynamic> data) async {
-    print("Data : insert account");
+    print("api : insert");
     final Database db = await database;
     return await db.insert(table, data);
   }
 
   Future<int> update(Future<Database> database, String table, Map<String, dynamic> data) async {
-    print("Data : update account");
+    print("api : update");
     final Database db = await database;
     return await db.update(
       table, 
@@ -40,7 +40,7 @@ class SqlApiService {
   }
 
   Future<int> delete(Future<Database> database, String table, int id) async {
-    print("Data : delete account");
+    print("api : delete");
     final Database db = await database;
     return await db.delete(
       table,

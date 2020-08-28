@@ -1,4 +1,7 @@
 import 'package:get_it/get_it.dart';
+import 'package:myownbudget_stacked/services/accounts_service.dart';
+import 'package:myownbudget_stacked/services/budgets_service.dart';
+import 'package:myownbudget_stacked/services/operations_service.dart';
 import 'package:myownbudget_stacked/viewModels/home_viewmodel.dart';
 import 'package:myownbudget_stacked/viewmodels/accounts_viewmodel.dart';
 import 'package:myownbudget_stacked/viewmodels/budgets_viewmodel.dart';
@@ -17,4 +20,8 @@ void setupLocator() {
   locator.registerFactory(() => AccountFormViewModel());
   locator.registerFactory(() => BudgetFormViewModel());
   locator.registerFactory(() => OperationFormViewModel());
+
+  locator.registerSingleton(AccountsService());
+  locator.registerSingleton(BudgetsService());
+  locator.registerSingleton(OperationsService());
 }
