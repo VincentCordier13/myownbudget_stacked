@@ -10,6 +10,15 @@ class Account {
   DateClass dateofLastOperation;
   String description;
 
+  Account() {
+    this.id = null;
+    this.name = "";
+    this.icon = new IconClass();
+    this.money = new MoneyClass();
+    this.dateofLastOperation = new DateClass.today();
+    this.description = "";
+  }
+
   Account.fromData(Map<String, dynamic> data) {
     this.id = data[AccountDataModel._ID];
     this.name = data[AccountDataModel._NAME];

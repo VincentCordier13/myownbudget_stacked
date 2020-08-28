@@ -5,13 +5,11 @@ class IconClass {
   ImageColorEnum imageColor;
   BackColorEnum backColor;
 
-  IconClass.setNull() {
+  IconClass() {
     this.image = "assets/icons/cadie.png";
     this.imageColor = ImageColorEnum.values[1];
     this.backColor = BackColorEnum.values[2];
   }
-
-  IconClass({@required this.image, @required this.imageColor, @required this.backColor});
 
   IconClass.fromData({@required String data}) {
     List<String> datas = data.split("@");

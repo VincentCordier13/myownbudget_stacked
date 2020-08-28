@@ -4,9 +4,8 @@ class MoneyClass {
   double amount;
   CurrencyEnum currency;
 
-  MoneyClass({@required this.amount, @required this.currency});
-
-  MoneyClass.setNull() {
+  MoneyClass() {
+    amount = 0.0;
     currency = CurrencyEnum.values[0];
   }
 

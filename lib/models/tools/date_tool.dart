@@ -5,7 +5,7 @@ class DateClass {
   int month;
   int year;
 
-  DateClass({@required this.day, @required this.month, @required this.year});
+  DateClass();
 
   DateClass.dateTime(DateTime dateTime) {
     this.day = dateTime.day;

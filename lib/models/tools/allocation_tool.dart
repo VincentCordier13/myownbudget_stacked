@@ -6,7 +6,7 @@ class AllocationClass{
   double value;
   AllocationEnum allocationType;
 
-  AllocationClass({@required this.idBudget, @required this.budgetName, @required this.value, @required this.allocationType});
+  AllocationClass();
 
   AllocationClass.fromData({@required String data}) {
     List<String> datas = data.split(".");
