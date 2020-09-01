@@ -1,36 +1,36 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 class IconClass {
   String image;
-  ImageColorEnum imageColor;
-  BackColorEnum backColor;
+  ImageColorEnum _imageColor;
+  BackColorEnum _backColor;
 
   IconClass() {
     this.image = "assets/icons/flutter.png";
-    this.imageColor = ImageColorEnum.values[0]; //white
-    this.backColor = BackColorEnum.values[1]; //black
+    this._imageColor = ImageColorEnum.values[0]; //white
+    this._backColor = BackColorEnum.values[1]; //black
   }
 
   IconClass.fromData({@required String data}) {
     print("IconClass.fromData");
     List<String> datas = data.split("@");
-    this.image = "assets/icons/" + datas[0] + ".png";
-    this.imageColor.fromData = datas[1];
-    this.backColor.fromData = datas[2];
+    this.image = "assets/icons/" + datas[0];
+    this._imageColor = imageColorFromData(data: datas[1]);
+    this._backColor = backColorFromData(data: datas[2]);
   }
 
   String toData() {
-    return this.image + "@" + this.imageColor.toData + "@" + this.backColor.toData;
+    return this.image.split("/").last + "@" + this._imageColor.toData() + "@" + this._backColor.toData();
   }
 
-  getBackColor() {
-    return this.backColor.toColorValue;
-  }
+  IconClass.setImage({@required this.image});
 
-  getImageColor() {
-    return this.imageColor.toColorValue;
-  }
+  Color get getImageColor => this._imageColor.toColorValue;
+  set setImageColor(ImageColorEnum imageColorEnum) => this._imageColor = imageColorEnum;
+
+  Color get getBackColor => this._backColor.toColorValue;
+  set setBackColor(BackColorEnum backColorEnum) => this._backColor = backColorEnum;
 }
 
 enum ImageColorEnum {
@@ -51,21 +51,10 @@ extension ImageColorEnumExtension on ImageColorEnum {
     }
   }
 
-  String get toData => describeEnum(this);
-
-  set fromData(String data) {
-    ImageColorEnum response = ImageColorEnum.values.firstWhere((e) {
-      print("");
-      print("e $e");
-      print("data $data");
-      print("describeEnum(e) ${describeEnum(e)}");
-      print(describeEnum(e) == data ? true : false);
-      print("");
-      return describeEnum(e) == data ? true : false ;
-    });
-    print("response $response");
-  }
+  String toData() => describeEnum(this);
 }
+
+ImageColorEnum imageColorFromData({@required String data}) => ImageColorEnum.values.firstWhere((e) => describeEnum(e) == data);
 
 
 enum BackColorEnum {
@@ -80,7 +69,7 @@ enum BackColorEnum {
   // ....
 }
 
-extension on BackColorEnum {
+extension BackColorEnumExtension on BackColorEnum {
 
   Color get toColorValue {
     switch (this) {
@@ -101,7 +90,7 @@ extension on BackColorEnum {
     }
   }
 
-  String get toData => describeEnum(this);
-
-  set fromData(String data) => BackColorEnum.values.firstWhere((e) => describeEnum(e) == data);
+  String toData() => describeEnum(this);
 }
+
+BackColorEnum backColorFromData({@required String data}) => BackColorEnum.values.firstWhere((e) => describeEnum(e) == data);

@@ -12,8 +12,8 @@ class AccountFormViewModel extends BaseViewModel {
   AccountFormViewModel() {_account = new Account();}
   set name(String name) => _account.name = name;
   set imageIcon(String image) => _account.icon.image = image;
-  set imageColorIcon(ImageColorEnum imageColor) => _account.icon.imageColor = imageColor;
-  set backColorIcon(BackColorEnum backColor) => _account.icon.backColor = backColor;
+  set imageColorIcon(ImageColorEnum imageColor) => _account.icon.setImageColor = imageColor;
+  set backColorIcon(BackColorEnum backColor) => _account.icon.setBackColor = backColor;
   set amountMoney(double amount) => _account.money.amount = amount;
   set currencyMoney(CurrencyEnum currency) => _account.money.currency = currency;
   set description(String description) => _account.description = description;

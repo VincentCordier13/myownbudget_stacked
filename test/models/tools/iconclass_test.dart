@@ -2,43 +2,52 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:myownbudget_stacked/models/tools/icon_tool.dart';
 
 void main() {
-  group('IconClass - ', () {
-    group('ImageColorEnum - ', () {
+  group('IconClass -', () {
+    group('ImageColorEnum -', () {
       ImageColorEnum imageColorEnum = ImageColorEnum.black;
       String data = "black";
       
-      print("fromData ***********");
-      ImageColorEnum imageColorEnumFromData = ImageColorEnum.white;
-      print("imageColorEnumFromData $imageColorEnumFromData");
-      imageColorEnumFromData.fromData = data;
-      print("imageColorEnumFromData $imageColorEnumFromData");
-      print("toData ***********");
-      String imageColorEnumToData;
-      print("imageColorEnumToData $imageColorEnumToData");
-      imageColorEnumToData = imageColorEnum.toData;
-      print("imageColorEnumToData $imageColorEnumToData");
+      ImageColorEnum imageColorEnumFromData = imageColorFromData(data: data);
+      String imageColorEnumToData = imageColorEnum.toData();
 
       test('fromData', () {
-        print("imageColorEnum : $imageColorEnum");
-        print("imageColorEnumFromData : $imageColorEnumFromData");
         expect(imageColorEnum, imageColorEnumFromData);
       });
       test('toData', () {
-        print("data : $data");
-        print("imageColorEnumToData : $imageColorEnumToData");
         expect(data, imageColorEnumToData);
       });
     });
+
+    group('BackColorEnum -', () {
+      BackColorEnum backColorEnum = BackColorEnum.black;
+      String data = "black";
+      
+      BackColorEnum backColorEnumFromData = backColorFromData(data: data);
+      String backColorEnumToData = backColorEnum.toData();
+
+      test('fromData', () {
+        expect(backColorEnum, backColorEnumFromData);
+      });
+      test('toData', () {
+        expect(data, backColorEnumToData);
+      });
+    });
+
+    IconClass icon = new IconClass();
+    String data = "flutter.png@white@black";
+    IconClass iconFromData = new IconClass.fromData(data: data);
+    String iconToData = icon.toData();
+    group('fromData -', () {
+      test('image', () => expect(icon.image, iconFromData.image));
+      test('imageColor', () => expect(icon.getImageColor, iconFromData.getImageColor));
+      test('backColor', () => expect(icon.getBackColor, iconFromData.getBackColor));
+    });
+    test('toData', () {
+      expect(data, iconToData);
+    });
   });
 
-  // IconClass icon = new IconClass();
-  // String data = "assets/icons/flutter.png@white@black";
-  // IconClass iconFromData = new IconClass.fromData(data: data);
-  // String iconToData = icon.toData();
-  // test('fromData', () {
-  //   expect(icon, iconFromData);
-  // });
-  // test('toData', () {
-  //   expect(data, iconToData);
-  // });
+  
+
+
 }

@@ -23,10 +23,10 @@ class AccountView extends StatelessWidget {
                     child: new ListTile(
                       dense: false,
                       leading: new CircleAvatar(
-                        backgroundColor: viewmodel.accounts[index].icon.getBackColor(),
+                        backgroundColor: viewmodel.accounts[index].icon.getBackColor,
                         child:
                           new Image.asset('${viewmodel.accounts[index].icon.image}', 
-                            color: viewmodel.accounts[index].icon.getImageColor(),
+                            color: viewmodel.accounts[index].icon.getImageColor,
                             height: 25,
                             width: 25,
                           ),
