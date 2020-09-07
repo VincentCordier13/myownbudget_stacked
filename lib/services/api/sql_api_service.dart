@@ -16,12 +16,18 @@ class SqlApiService {
     );
   }
 
+  Future<Database> removeDatabase(String name) async {
+    print("api : deleteDatabase");
+    await deleteDatabase(join(await getDatabasesPath(), name));
+    return null;
+  }
+
   Future<List<Map<String, dynamic>>> load(Future<Database> database, String table, List<String> columns) async {
     print("api : load");
     final Database db = await database;
-    print(Sqflite.firstIntValue(await db.rawQuery('SELECT COUNT(*) FROM table_name')));
-    if (Sqflite.firstIntValue(await db.rawQuery('SELECT COUNT(*) FROM table_name')) == 0)
-      return null;
+    print(Sqflite.firstIntValue(await db.rawQuery('SELECT COUNT(*) FROM $table')));
+    // if (Sqflite.firstIntValue(await db.rawQuery('SELECT COUNT(*) FROM $table')) == 0)
+    //   return null;
     return await db.query(table, columns: columns);
   }
 

@@ -12,12 +12,12 @@ class AccountFormView extends StatelessWidget {
   Widget build(BuildContext context) {
     print("AccountFormView built");
     return ViewModelBuilder<AccountFormViewModel>.reactive(
-      builder: (context, viewmodel, child) => Opacity(
-        opacity: 0.5,
-        child: Container(
-          alignment: Alignment.center,
-          child: new RaisedButton(
-            onPressed: () { 
+      builder: (context, viewmodel, child) => Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          new RaisedButton(
+            child: Text('createAccount'),
+            onPressed: () {
               viewmodel.name = "Caisse d'épargne";
               viewmodel.imageIcon = "";
               viewmodel.imageColorIcon = ImageColorEnum.black;
@@ -29,8 +29,16 @@ class AccountFormView extends StatelessWidget {
 
               Navigator.pop(context);
             }
-          )
-        ),
+          ),
+          new RaisedButton(
+            child: Text('removeAccountDatabase'),
+            onPressed: () {
+              viewmodel.removeDatabase();
+
+              Navigator.pop(context);
+            }
+          ),
+        ],
       ),
       viewModelBuilder: () => locator<AccountFormViewModel>(),
     );

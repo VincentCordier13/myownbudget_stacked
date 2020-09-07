@@ -9,18 +9,24 @@ class AccountFormViewModel extends BaseViewModel {
   final _service = locator<AccountsService>();
 
   Account _account;
-  AccountFormViewModel() {_account = new Account();}
+  AccountFormViewModel() : _account = new Account();
+
   set name(String name) => _account.name = name;
   set imageIcon(String image) => _account.icon = new IconClass.setImage(image: image);
   set imageColorIcon(ImageColorEnum imageColor) => _account.icon.setImageColor = imageColor;
   set backColorIcon(BackColorEnum backColor) => _account.icon.setBackColor = backColor;
-  set amountMoney(double amount) => _account.money.amount = amount;
-  set currencyMoney(CurrencyEnum currency) => _account.money.currency = currency;
+  set currencyMoney(CurrencyEnum currency) => _account.money = new MoneyClass.setCurrency(currency: currency);
+  set amountMoney(double amount) => _account.money.setAmount = amount;
   set description(String description) => _account.description = description;
 
   Future<int> createAccount() async {
     int response = await _service.insertAccount(_account);
     notifyListeners();
     return response;
+  }
+
+  Future<void> removeDatabase() async {
+    await _service.removeAccountDatabase();
+    notifyListeners();
   }
 }

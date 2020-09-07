@@ -40,7 +40,7 @@ void main() {
     IconClass iconFromData = new IconClass.fromData(data: data);
     String iconToData = icon.toData();
     group('fromData -', () {
-      test('image', () => expect(icon.image, iconFromData.image));
+      test('image', () => expect(icon.getImage, iconFromData.getImage));
       test('imageColor', () => expect(icon.getImageColor, iconFromData.getImageColor));
       test('backColor', () => expect(icon.getBackColor, iconFromData.getBackColor));
     });

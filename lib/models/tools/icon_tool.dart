@@ -9,35 +9,35 @@ class IconClass {
   static const String imageRepository = "assets/icons/";
 
   IconClass() {
-    this._image = null;
-    this._imageColor = null;
-    this._backColor = null;
+    _image = null;
+    _imageColor = null;
+    _backColor = null;
   }
 
   IconClass.fromData({@required String data}) {
     print("IconClass.fromData");
     List<String> datas = data.split("@");
-    this._image = imageRepository + datas[0];
-    this._imageColor = imageColorFromData(data: datas[1]);
-    this._backColor = backColorFromData(data: datas[2]);
+    _image = datas[0];
+    _imageColor = imageColorFromData(data: datas[1]);
+    _backColor = backColorFromData(data: datas[2]);
   }
 
   String toData() {
-    return this._image.split("/").last + "@" + this._imageColor.toData() + "@" + this._backColor.toData();
+    return _image + "@" + _imageColor.toData() + "@" + _backColor.toData();
   }
 
-  String get image => this._image = imageRepository + _image;
+  String get getImage => imageRepository + _image;
   IconClass.setImage({@required String image}) {
-    _image = imageRepository + image;
+    _image = image;
     _imageColor = null;
     _backColor = null;
   }
 
-  Color get getImageColor => this._imageColor.toColorValue;
-  set setImageColor(ImageColorEnum imageColorEnum) => this._imageColor = imageColorEnum;
+  Color get getImageColor => _imageColor.toColor;
+  set setImageColor(ImageColorEnum imageColorEnum) => _imageColor = imageColorEnum;
 
-  Color get getBackColor => this._backColor.toColorValue;
-  set setBackColor(BackColorEnum backColorEnum) => this._backColor = backColorEnum;
+  Color get getBackColor => _backColor.toColor;
+  set setBackColor(BackColorEnum backColorEnum) => _backColor = backColorEnum;
 }
 
 enum ImageColorEnum {
@@ -47,7 +47,7 @@ enum ImageColorEnum {
 
 extension ImageColorEnumExtension on ImageColorEnum {
 
-  Color get toColorValue {
+  Color get toColor {
     switch (this) {
       case ImageColorEnum.white :
         return Color(0xFFFFFFFF);
@@ -78,7 +78,7 @@ enum BackColorEnum {
 
 extension BackColorEnumExtension on BackColorEnum {
 
-  Color get toColorValue {
+  Color get toColor {
     switch (this) {
       case BackColorEnum.white :
         return Color(0xFFFFFFFF);

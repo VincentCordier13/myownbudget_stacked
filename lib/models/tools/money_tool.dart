@@ -1,31 +1,41 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 
 class MoneyClass {
-  double amount;
-  CurrencyEnum currency;
+  double _amount;
+  CurrencyEnum _currency;
 
   MoneyClass() {
-    amount = 0.0;
-    currency = CurrencyEnum.values[0];
+    _amount = 0.0;
+    _currency = null;
   }
 
   MoneyClass.fromData({@required String data}) {
     print("MoneyClass.fromData");
     List<String> datas = data.split("@");
-    this.amount = double.parse(datas[0]);
-    this.currency = this.currency.fromStringData(datas[1]);
+    _amount = double.parse(datas[0]);
+    _currency = currencyFromData(data: datas[1]);
   }
 
   String toData() {
-    return this.amount.toString() + "@" + this.currency.toStringData();
+    return _amount.toStringAsFixed(2) + "@" + _currency.toData();
   }
 
   String toString() {
-    return this.currency.toStringValue() + " " + this.amount.toStringAsFixed(2);
+    return _currency.toCurrencyString + " " + _amount.toStringAsFixed(2);
   }
+
+  double get getAmount => _amount;
+  set setAmount(double amount) => _amount = amount;
+
+  String get getCurrency => _currency.toCurrencyString;
+  MoneyClass.setCurrency({@required CurrencyEnum currency}){
+    _amount = 0.0;
+    _currency = currency;
+  } 
 }
 
-List<String> getMoniesToString(List<MoneyClass> monies) {
+List<String> moniesToString(List<MoneyClass> monies) {
   List<String> list = new List<String>();
   monies.forEach((currentMoney) {
     currentMoney.toString();
@@ -53,6 +63,7 @@ String moniesToData(List<MoneyClass> monies) {
   return string;
 }
 
+
 enum CurrencyEnum {
   euros,
   dollars,
@@ -60,9 +71,9 @@ enum CurrencyEnum {
   pounds,
 }
 
-extension on CurrencyEnum {
+extension CurrencyEnumExtension on CurrencyEnum {
 
-  String toStringValue() {
+  String get toCurrencyString {
     switch (this) {
       case CurrencyEnum.euros :
         return "€";
@@ -77,11 +88,7 @@ extension on CurrencyEnum {
     }
   }
 
-  String toStringData() {
-    return this.toString().substring(this.toString().indexOf('.') + 1);
-  }
-
-  CurrencyEnum fromStringData(String string) {
-    return CurrencyEnum.values.firstWhere((e) => e.toString() == string);
-  }
+  String toData() => describeEnum(this);
 }
+
+CurrencyEnum currencyFromData({@required String data}) => CurrencyEnum.values.firstWhere((e) => describeEnum(e) == data);

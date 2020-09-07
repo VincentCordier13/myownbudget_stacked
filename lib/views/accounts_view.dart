@@ -25,7 +25,7 @@ class AccountView extends StatelessWidget {
                       leading: new CircleAvatar(
                         backgroundColor: viewmodel.accounts[index].icon.getBackColor,
                         child:
-                          new Image.asset('${viewmodel.accounts[index].icon.image}', 
+                          new Image.asset('${viewmodel.accounts[index].icon.getImage}', 
                             color: viewmodel.accounts[index].icon.getImageColor,
                             height: 25,
                             width: 25,
