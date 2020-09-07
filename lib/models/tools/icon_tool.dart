@@ -9,6 +9,7 @@ class IconClass {
   static const String imageRepository = "assets/icons/";
 
   IconClass() {
+    print("IconClass");
     _image = null;
     _imageColor = null;
     _backColor = null;
@@ -23,6 +24,7 @@ class IconClass {
   }
 
   String toData() {
+    print("IconClass toData");
     return _image + "@" + _imageColor.toData() + "@" + _backColor.toData();
   }
 
@@ -33,10 +35,10 @@ class IconClass {
     _backColor = null;
   }
 
-  Color get getImageColor => _imageColor.toColor;
+  Color get getImageColor => _imageColor.toColorValue;
   set setImageColor(ImageColorEnum imageColorEnum) => _imageColor = imageColorEnum;
 
-  Color get getBackColor => _backColor.toColor;
+  Color get getBackColor => _backColor.toColorValue;
   set setBackColor(BackColorEnum backColorEnum) => _backColor = backColorEnum;
 }
 
@@ -47,7 +49,7 @@ enum ImageColorEnum {
 
 extension ImageColorEnumExtension on ImageColorEnum {
 
-  Color get toColor {
+  Color get toColorValue {
     switch (this) {
       case ImageColorEnum.white :
         return Color(0xFFFFFFFF);
@@ -78,7 +80,7 @@ enum BackColorEnum {
 
 extension BackColorEnumExtension on BackColorEnum {
 
-  Color get toColor {
+  Color get toColorValue {
     switch (this) {
       case BackColorEnum.white :
         return Color(0xFFFFFFFF);

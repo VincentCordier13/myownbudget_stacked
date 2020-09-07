@@ -6,6 +6,7 @@ class MoneyClass {
   CurrencyEnum _currency;
 
   MoneyClass() {
+    print("MoneyClass");
     _amount = 0.0;
     _currency = null;
   }
@@ -18,17 +19,19 @@ class MoneyClass {
   }
 
   String toData() {
+    print("MoneyClass toData");
     return _amount.toStringAsFixed(2) + "@" + _currency.toData();
   }
 
   String toString() {
-    return _currency.toCurrencyString + " " + _amount.toStringAsFixed(2);
+    print("MoneyClass toString");
+    return _currency.toStringValue + " " + _amount.toStringAsFixed(2);
   }
 
   double get getAmount => _amount;
   set setAmount(double amount) => _amount = amount;
 
-  String get getCurrency => _currency.toCurrencyString;
+  String get getCurrency => _currency.toStringValue;
   MoneyClass.setCurrency({@required CurrencyEnum currency}){
     _amount = 0.0;
     _currency = currency;
@@ -73,7 +76,7 @@ enum CurrencyEnum {
 
 extension CurrencyEnumExtension on CurrencyEnum {
 
-  String get toCurrencyString {
+  String get toStringValue {
     switch (this) {
       case CurrencyEnum.euros :
         return "€";

@@ -5,7 +5,7 @@ enum OperationEnum {
 
 extension OperationEnumExtension on OperationEnum {
 
-  String toStringValue() {
+  String get toStringValue {
     switch (this) {
       case OperationEnum.income :
         return "Revenu";

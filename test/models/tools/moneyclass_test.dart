@@ -8,7 +8,7 @@ void main() {
       String string = "CAD\$";
       String data = "cad";
       
-      String currencyToString = currencyEnum.toCurrencyString;
+      String currencyToString = currencyEnum.toStringValue;
       CurrencyEnum currencyEnumFromData = currencyFromData(data: data);
       String currencyEnumToData = currencyEnum.toData();
 

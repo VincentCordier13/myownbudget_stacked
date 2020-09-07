@@ -3,7 +3,8 @@ import 'package:myownbudget_stacked/models/tools/icon_tool.dart';
 import 'package:myownbudget_stacked/models/tools/money_tool.dart';
 
 class Account {
-  int id;
+  int _id;
+  int get id => _id;
   String name;
   IconClass icon;
   MoneyClass money;
@@ -11,32 +12,32 @@ class Account {
   String description;
 
   Account() {
-    this.id = null;
-    this.name = "";
-    this.icon = new IconClass();
-    this.money = new MoneyClass();
-    this.dateofLastOperation = new DateClass.today();
-    this.description = "";
+    _id = null;
+    name = "";
+    icon = new IconClass();
+    money = new MoneyClass();
+    dateofLastOperation = new DateClass.today();
+    description = "";
   }
 
   Account.fromData(Map<String, dynamic> data) {
     print("Account.fromData");
-    this.id = data[AccountDataModel._ID];
-    this.name = data[AccountDataModel._NAME];
-    this.icon = new IconClass.fromData(data: data[AccountDataModel._ICON]);
-    this.money = new MoneyClass.fromData(data: data[AccountDataModel._MONEY]);
-    this.dateofLastOperation = new DateClass.fromData(data: data[AccountDataModel._DATE]);
-    this.description = data[AccountDataModel._DESCRIPTION];
+    _id = data[AccountDataModel._ID];
+    name = data[AccountDataModel._NAME];
+    icon = new IconClass.fromData(data: data[AccountDataModel._ICON]);
+    money = new MoneyClass.fromData(data: data[AccountDataModel._MONEY]);
+    dateofLastOperation = new DateClass.fromData(data: data[AccountDataModel._DATE]);
+    description = data[AccountDataModel._DESCRIPTION];
   }
 
   Map<String, dynamic> toData() {
     return <String, dynamic> {
       //AccountDataModel._ID: this.id, //auto-increment
-      AccountDataModel._NAME: this.name,
-      AccountDataModel._ICON: this.icon.toData(),
-      AccountDataModel._MONEY: this.money.toData(),
-      AccountDataModel._DATE: this.dateofLastOperation.toData(),
-      AccountDataModel._DESCRIPTION: this.description,
+      AccountDataModel._NAME: name,
+      AccountDataModel._ICON: icon.toData(),
+      AccountDataModel._MONEY: money.toData(),
+      AccountDataModel._DATE: dateofLastOperation.toData(),
+      AccountDataModel._DESCRIPTION: description,
     };
   }
 }

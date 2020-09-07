@@ -1,26 +1,45 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 
 class AllocationClass{
-  int idBudget;
-  String budgetName;
-  double value;
-  AllocationEnum allocationType;
+  int _idBudget;
+  // String _budgetName;
+  double _value;
+  AllocationEnum _allocationType;
 
-  AllocationClass();
+  AllocationClass() {
+    print("MoneyClass");
+    _idBudget = 0;
+    _value = 0.0;
+    _allocationType = null;
+  }
 
   AllocationClass.fromData({@required String data}) {
-    List<String> datas = data.split(".");
-    this.idBudget = int.parse(datas[0]);
-    this.value = double.parse(datas[1]);
-    this.allocationType = this.allocationType.fromStringData(datas[2]);
+    print("MoneyClass.fromData");
+    List<String> datas = data.split("@");
+    _idBudget = int.parse(datas[0]);
+    _value = double.parse(datas[1]);
+    _allocationType = allocationFromData(data: datas[2]);
   }
 
   String toData() {
-    return this.idBudget.toString() + "." + this.value.toString() + "." + this.allocationType.toStringData();
+    print("MoneyClass toData");
+    return _idBudget.toString() + "@" + _value.toStringAsFixed(2) + "@" + _allocationType.toData();
   }
 
   String toString() {
-    return this.value.toString() + this.allocationType.toStringValue() + " " + this.budgetName;
+    print("MoneyClass toString");
+    return _value.toString() + _allocationType.toStringValue() + " ";// + _budgetName;
+  }
+
+  String get getBudgetName {
+    return "";
+  }
+  AllocationClass.setBudgetId({@required int budgetId}) {
+    print("MoneyClass.setBudgetId");
+    _idBudget = budgetId;
+    _value = 0.0;
+    _allocationType = null;
   }
 }
 
@@ -69,11 +88,7 @@ extension on AllocationEnum {
     }
   }
 
-  String toStringData() {
-    return this.toString().substring(this.toString().indexOf('.') + 1);
-  }
-
-  AllocationEnum fromStringData(String string) {
-    return AllocationEnum.values.firstWhere((e) => e.toString() == string);
-  }
+  String toData() => describeEnum(this);
 }
+
+AllocationEnum allocationFromData({@required String data}) => AllocationEnum.values.firstWhere((e) => describeEnum(e) == data);

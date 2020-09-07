@@ -3,7 +3,8 @@ import 'package:myownbudget_stacked/models/tools/icon_tool.dart';
 import 'package:myownbudget_stacked/models/tools/money_tool.dart';
 
 class Budget {
-  int id;
+  int _id;
+  int get id => _id;
   String name;
   IconClass icon;
   List<MoneyClass> monies;

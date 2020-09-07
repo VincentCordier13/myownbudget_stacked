@@ -4,7 +4,8 @@ import 'package:myownbudget_stacked/models/tools/date_tool.dart';
 import 'package:myownbudget_stacked/models/tools/operation_tool.dart';
 
 class Operation {
-  int id;
+  int _id;
+  int get id => _id;
   OperationEnum operationType;
   Category category;
   double amount;

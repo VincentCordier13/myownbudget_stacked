@@ -1,38 +1,46 @@
 import 'package:flutter/cupertino.dart';
 
 class DateClass {
-  int day;
-  int month;
-  int year;
+  int _day;
+  int _month;
+  int _year;
 
-  DateClass();
+  DateClass() {
+    _day = 0;
+    _month = 0;
+    _year = 0;
+  }
 
   DateClass.dateTime(DateTime dateTime) {
-    this.day = dateTime.day;
-    this.month = dateTime.month;
-    this.year = dateTime.year;
+    print("DateClass.dateTime");
+    _day = dateTime.day;
+    _month = dateTime.month;
+    _year = dateTime.year;
   }
 
   DateClass.today() {
+    print("DateClass.today");
     DateTime today = DateTime.now();
-    this.day = today.day;
-    this.month = today.month;
-    this.year = today.year;
+    _day = today.day;
+    _month = today.month;
+    _year = today.year;
   }
 
   DateClass.fromData({@required String data}) {
     print("DateClass.fromData");
     List<String> datas = data.split("@");
-    this.day = int.parse(datas[0]);
-    this.month = int.parse(datas[1]);
-    this.year = int.parse(datas[2]);
+    _day = int.parse(datas[0]);
+    _month = int.parse(datas[1]);
+    _year = int.parse(datas[2]);
   }
 
   String toData() {
-    return this.day.toString() + "@" + this.month.toString() + "@" + this.year.toString();
+    print("DateClass toData");
+    return _day.toString() + "@" + _month.toString() + "@" + _year.toString();
   }
 
   String toString({PeriodEnum period = PeriodEnum.dayly}) {
+    print("DateClass toString");
     String stringDate = "";
     DateClass today = new DateClass.today();
 
@@ -44,28 +52,29 @@ class DateClass {
       return "Cette année";
 
     if (period == PeriodEnum.dayly)
-      stringDate += this.day.toString() + " ";
+      stringDate += _day.toString() + " ";
     if (period != PeriodEnum.yearly)
-      stringDate += Month.values[this.month - 1].toString().substring(Month.values[this.month - 1].toString().indexOf('.') + 1);
-    if (period != PeriodEnum.yearly && (this.year != today.year))
+      stringDate += Month.values[_month - 1].toString().substring(Month.values[_month - 1].toString().indexOf('.') + 1);
+    if (period != PeriodEnum.yearly && (_year != today._year))
       stringDate += " ";
-    if ((this.year != today.year))
-      stringDate += this.year.toString();
+    if ((_year != today._year))
+      stringDate += _year.toString();
 
     return stringDate;
   }
 
   bool isEqual(DateClass otherDate, {PeriodEnum period = PeriodEnum.dayly}) {
+    print("DateClass toString");
     bool possibleEqual = true;
     if (period == PeriodEnum.dayly) {
-      if (this.day != otherDate.day)
+      if (_day != otherDate._day)
         possibleEqual = false;
     }
     if (period != PeriodEnum.yearly) {
-      if (this.month != otherDate.month)
+      if (_month != otherDate._month)
         possibleEqual = false;
     }
-    if (this.year != otherDate.year)
+    if (_year != otherDate._year)
       possibleEqual = false;  
 
     return possibleEqual;
