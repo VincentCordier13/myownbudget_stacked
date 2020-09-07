@@ -2,29 +2,36 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class IconClass {
-  String image;
+  String _image;
   ImageColorEnum _imageColor;
   BackColorEnum _backColor;
 
+  static const String imageRepository = "assets/icons/";
+
   IconClass() {
-    this.image = "assets/icons/flutter.png";
-    this._imageColor = ImageColorEnum.values[0]; //white
-    this._backColor = BackColorEnum.values[1]; //black
+    this._image = null;
+    this._imageColor = null;
+    this._backColor = null;
   }
 
   IconClass.fromData({@required String data}) {
     print("IconClass.fromData");
     List<String> datas = data.split("@");
-    this.image = "assets/icons/" + datas[0];
+    this._image = imageRepository + datas[0];
     this._imageColor = imageColorFromData(data: datas[1]);
     this._backColor = backColorFromData(data: datas[2]);
   }
 
   String toData() {
-    return this.image.split("/").last + "@" + this._imageColor.toData() + "@" + this._backColor.toData();
+    return this._image.split("/").last + "@" + this._imageColor.toData() + "@" + this._backColor.toData();
   }
 
-  IconClass.setImage({@required this.image});
+  String get image => this._image = imageRepository + _image;
+  IconClass.setImage({@required String image}) {
+    _image = imageRepository + image;
+    _imageColor = null;
+    _backColor = null;
+  }
 
   Color get getImageColor => this._imageColor.toColorValue;
   set setImageColor(ImageColorEnum imageColorEnum) => this._imageColor = imageColorEnum;

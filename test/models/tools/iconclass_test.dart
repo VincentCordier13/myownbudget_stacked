@@ -33,7 +33,9 @@ void main() {
       });
     });
 
-    IconClass icon = new IconClass();
+    IconClass icon = new IconClass.setImage(image: "flutter.png");
+    icon.setImageColor = ImageColorEnum.white;
+    icon.setBackColor = BackColorEnum.black;
     String data = "flutter.png@white@black";
     IconClass iconFromData = new IconClass.fromData(data: data);
     String iconToData = icon.toData();
