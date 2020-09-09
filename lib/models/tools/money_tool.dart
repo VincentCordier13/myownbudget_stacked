@@ -32,7 +32,8 @@ class MoneyClass {
   set setAmount(double amount) => _amount = amount;
 
   String get getCurrency => _currency.toStringValue;
-  MoneyClass.setCurrency({@required CurrencyEnum currency}){
+  MoneyClass.setCurrency({@required CurrencyEnum currency}) {
+    print("MoneyClass.setCurrency");
     _amount = 0.0;
     _currency = currency;
   } 

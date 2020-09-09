@@ -5,8 +5,10 @@ import 'package:myownbudget_stacked/models/tools/money_tool.dart';
 import 'package:myownbudget_stacked/services/accounts_service.dart';
 import 'package:stacked/stacked.dart';
 
-class AccountFormViewModel extends BaseViewModel {
+class AccountFormViewModel extends ReactiveViewModel  {
   final _service = locator<AccountsService>();
+  @override
+  List<ReactiveServiceMixin> get reactiveServices => [_service];
 
   Account _account;
   AccountFormViewModel() : _account = new Account();
@@ -26,7 +28,7 @@ class AccountFormViewModel extends BaseViewModel {
   }
 
   Future<void> removeDatabase() async {
-    await _service.removeAccountDatabase();
+    await _service.removeAccountDatabase(); 
     notifyListeners();
   }
 }

@@ -30,6 +30,7 @@ class IconClass {
 
   String get getImage => imageRepository + _image;
   IconClass.setImage({@required String image}) {
+    print("IconClass.setImage");
     _image = image;
     _imageColor = null;
     _backColor = null;

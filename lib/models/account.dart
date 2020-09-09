@@ -12,12 +12,12 @@ class Account {
   String description;
 
   Account() {
-    _id = null;
-    name = "";
-    icon = new IconClass();
-    money = new MoneyClass();
-    dateofLastOperation = new DateClass.today();
-    description = "";
+    // _id = null;
+    // name = "";
+    // icon = new IconClass();
+    // money = new MoneyClass();
+    // dateofLastOperation = new DateClass.today();
+    // description = "";
   }
 
   Account.fromData(Map<String, dynamic> data) {

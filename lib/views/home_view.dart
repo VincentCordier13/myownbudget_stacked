@@ -10,9 +10,6 @@ import 'package:stacked/stacked.dart';
 
 class HomeView extends StatelessWidget {
 
-   
-    
-
   @override
   Widget build(BuildContext context) {
     print("HomeView built");

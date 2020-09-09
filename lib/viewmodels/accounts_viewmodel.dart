@@ -5,11 +5,11 @@ import 'package:stacked/stacked.dart';
 
 class AccountsViewModel extends FutureViewModel<List<Account>> {
   final _service = locator<AccountsService>();
+  @override
+  List<ReactiveServiceMixin> get reactiveServices => [_service];
+
   List<Account> get accounts => _service.accounts;
 
   @override
-  Future<List<Account>> futureToRun() => _service.loadAccounts();
-
-  @override
-  List<ReactiveServiceMixin> get reactiveServices => [_service];
+  Future<List<Account>> futureToRun() => _service.loadAccounts(); 
 }
