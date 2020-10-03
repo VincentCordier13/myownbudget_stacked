@@ -11,5 +11,5 @@ class Operation {
   double amount;
   Account account;
   DateClass date;
-  String description;
+  String description; 
 }
